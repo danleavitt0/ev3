@@ -52,7 +52,7 @@ function getInches () {
  * @return {Number} distance in cm
  */
 function getCM () {
-  var denominator = Math.pow(10, Number(this.read('decimals')))
   this.write('mode', 'US-DIST-CM')
+  var denominator = Math.pow(10, Number(this.read('decimals')))
   return Number(this.read('value0')) / denominator
 }

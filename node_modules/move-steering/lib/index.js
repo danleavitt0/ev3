@@ -79,7 +79,7 @@ MoveSteering.prototype.degrees = function (degrees, speed, turn) {
 
 MoveSteering.prototype.rotations = function (rotations, speed, turn) {
   speed = speed || motorDefaults.speed
-  this.degrees(rotations * 360, speed, turn)
+  this.degrees(Math.round(rotations * 360), speed, turn)
 }
 
 /**
