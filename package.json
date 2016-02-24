@@ -48,7 +48,7 @@
     "redux-logger": "^1.0.9",
     "redux-multi": "^0.1.8",
     "touch-sensor": "^0.1.16",
-    "ultrasonic-sensor": "^0.1.11"
+    "ultrasonic-sensor": "^0.1.13"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.1.18",
