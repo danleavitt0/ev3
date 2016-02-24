@@ -76,17 +76,21 @@ app.post('/file.stop', function (req, res) {
   } catch (e) {
     console.warn('no motors attached')
   }
-  res.json({
-    ok: true,
-    message: 'Run finished'
-  })
+  setTimeout(function () {
+    res.json({
+      ok: true,
+      message: 'Run finished'
+    })
+  }, 6000)
 })
 
 app.post('/file.run', function (req, res) {
   var filePath = __dirname + '/files/' + req.body.fileName
   node = createNode(filePath, req.body.fileName)
   node.on('exit', function () {
-    res.json({ok: true, message: 'Run finished'})
+    setTimeout(function () {
+      res.json({ok: true, message: 'Run finished'})
+    }, 6000)
   })
 })
 
@@ -123,7 +127,7 @@ app.post('/sensor.mode', function (req, res) {
   var writePath = path.join(req.body.path, 'mode')
   fs.writeFile(writePath, req.body.mode, function (err) {
     if (err) {
-      res.json({ 
+      res.json({
         ok: false,
         msg: err
       })
@@ -205,4 +209,4 @@ app.get('*', function (req, res) {
 
 
 var port = process.env.port || 3000
-http.listen(port) 
+http.listen(port)
