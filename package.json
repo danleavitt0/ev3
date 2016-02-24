@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "watchify index.js -o ./public/bundle.js -t [babelify] & devtool server.js --watch",
+    "build": "browserify index.js -o ./public/bundle.js -t [babelify]",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

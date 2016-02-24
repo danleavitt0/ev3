@@ -1612,7 +1612,6 @@ var Home = function (_Component) {
       return _react2.default.createElement(
         _main2.default,
         { nav: _react2.default.createElement(_nav2.default, { title: 'EV3.js', iconRight: _react2.default.createElement(_lib.FlatButton, { onClick: this.createFile.bind(this), label: 'Create' }) }) },
-        _react2.default.createElement(_lib.FlatButton, { onClick: this.pullButtonClick.bind(this), label: 'Pull Updates' }),
         _react2.default.createElement(
           'div',
           { style: styles.cardList },
