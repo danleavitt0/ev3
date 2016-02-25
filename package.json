@@ -25,6 +25,7 @@
     "color-sensor": "^0.1.20",
     "cors": "^2.7.1",
     "enroute": "^1.0.1",
+    "ev3-js-motor": "^0.5.24",
     "ev3-js-wait": "^0.1.4",
     "express": "^4.13.3",
     "forever": "^0.15.1",
