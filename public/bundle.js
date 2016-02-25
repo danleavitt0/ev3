@@ -1783,12 +1783,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var styles = {
 	container: {
 		display: 'flex',
+		alignItems: 'center',
 		padding: 20
 	},
 	dropDown: {
 		marginTop: '-15px',
 		flex: 1,
 		left: -20
+	},
+	textValue: {
+		marginRight: 14
 	},
 	color: {
 		height: 30,
@@ -1861,7 +1865,7 @@ var ColorSensor = function (_Component) {
 					onChange: this.swapMode.bind(this) }),
 				_react2.default.createElement(
 					'div',
-					null,
+					{ style: styles.textValue },
 					' ',
 					this.props.value,
 					' '
