@@ -1859,6 +1859,13 @@ var ColorSensor = function (_Component) {
 					style: styles.dropDown,
 					menuItems: items,
 					onChange: this.swapMode.bind(this) }),
+				_react2.default.createElement(
+					'div',
+					null,
+					' ',
+					this.props.value,
+					' '
+				),
 				_react2.default.createElement('div', { style: (0, _utils.merge)(styles.color, { backgroundColor: color }) })
 			);
 		}

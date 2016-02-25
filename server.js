@@ -24,7 +24,7 @@ var node
 app.post('/file.get/:name', function (req, res) {
   var file = __dirname + '/files/' + req.params.name
   fs.readFile(file, 'utf-8', function (err, data) {
-    if (err)  {
+    if (err) {
       var startString = 'var MoveSteering = require(\'move-steering\')'
       fs.writeFileSync(file, startString)
       return res.send(startString)
@@ -33,11 +33,11 @@ app.post('/file.get/:name', function (req, res) {
   })
 })
 
-app.post('/log.get', function (req,res) {
-  var file = fs.readFile('log.txt', 'utf-8', function (err, data) {
+app.post('/log.get', function (req, res) {
+  fs.readFile('log.txt', 'utf-8', function (err, data) {
     if (err) {
       fs.writeFile('log.txt', '', function () {
-        res.json({ ok: true, data: 'Create log.txt'})
+        res.json({ ok: true, data: 'Create log.txt' })
       })
     } else {
       res.json({ ok: true, data: data })
@@ -47,7 +47,7 @@ app.post('/log.get', function (req,res) {
 
 app.post('/log.clear', function (req, res) {
   fs.writeFile('log.txt', '', function () {
-    res.json({ ok: true, data: 'Create log.txt'})
+    res.json({ ok: true, data: 'Create log.txt' })
   })
 })
 
@@ -97,7 +97,7 @@ app.post('/file.run', function (req, res) {
 app.post('/file.getAll', function (req, res) {
   fs.readdir(__dirname + '/files', function (err, data) {
     if (err) {
-      res.send({text: ''})
+      res.send({})
     }
     res.send(JSON.stringify(data))
   })
