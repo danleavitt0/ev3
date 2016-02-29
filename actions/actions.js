@@ -9,9 +9,9 @@ const IS_LOADING = 'IS_LOADING'
 const IS_RUNNING = 'IS_RUNNING'
 const SAVE_LOG = 'SAVE_LOG'
 
-function startRun (file) {
+function startRun (file, text) {
 	return [
-		bind(fetch('/file.run', {
+		bind(fetchSave(file, text), () => fetch('/file.run', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -20,7 +20,7 @@ function startRun (file) {
 			body: JSON.stringify({
 				fileName: file
 			})
-		}), finishServer, (err) => console.warn(err)),
+		}), (err) => console.warn(err)),
 		startRunning()
 	]
 }
@@ -51,7 +51,7 @@ function fetchFile (url) {
 
 function stop () {
 	return fetch('/file.stop', {
-		method: 'POST',
+		method: 'POST'
 	})
 }
 
