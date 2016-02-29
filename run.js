@@ -1,10 +1,4 @@
-require('move-steering')
-require('color-sensor')
-require('ultrasonic-sensor')
-require('ir-sensor')
-require('ev3-js-motor')
-require('ev3-js-wait')
-require('touch-sensor')
+require('ev3-robot')
 
 var fs = require('fs')
 process.stdin.setEncoding('utf-8')
