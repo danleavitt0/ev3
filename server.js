@@ -25,7 +25,7 @@ app.post('/file.get/:name', function (req, res) {
   var file = __dirname + '/files/' + req.params.name
   fs.readFile(file, 'utf-8', function (err, data) {
     if (err) {
-      var startString = 'var MoveSteering = require(\'move-steering\')'
+      var startString = 'var robot = require(\'ev3-robot\')'
       fs.writeFileSync(file, startString)
       return res.send(startString)
     }
