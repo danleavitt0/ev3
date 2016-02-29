@@ -1417,7 +1417,6 @@ var Editor = function (_Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			console.log(this.state.running);
 			var buttonContainer = _react2.default.createElement(
 				'div',
 				{ style: styles.buttonContainer },
