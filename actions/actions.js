@@ -10,21 +10,24 @@ const IS_RUNNING = 'IS_RUNNING'
 const SAVE_LOG = 'SAVE_LOG'
 
 function startRun (file, text) {
+	return bind(fetchSave(file, text), () => run(file), (err) => console.warn(err))
+}
+
+function run (file) {
 	return [
-		bind(fetchSave(file, text), () => fetch('/file.run', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				fileName: file
-			})
-		}), (err) => console.warn(err)),
+		bind(fetch('/file.run', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					fileName: file
+				})
+		}), finishServer, err => console.warn(err)),
 		startRunning()
 	]
 }
-
 
 function fetchSave (title, text) {
 	return bind(fetch('/file.save', {

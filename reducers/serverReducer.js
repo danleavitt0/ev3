@@ -28,14 +28,12 @@ function reducer (state={}, action) {
 		case IS_SAVING:
 			return {
 				...state,
-				saving: true,
-				saveMessage: ''
+				saving: true
 			}
 		case IS_RUNNING:
 			return {
 				...state,
-				running: true,
-				saveMessage: ''
+				running: true
 			}
 		case FINISH_SERVER:
 			return {

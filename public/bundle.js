@@ -20,18 +20,24 @@ var IS_RUNNING = 'IS_RUNNING';
 var SAVE_LOG = 'SAVE_LOG';
 
 function startRun(file, text) {
-	return [(0, _reduxEffects.bind)(fetchSave(file, text), function () {
-		return (0, _reduxEffectsFetch.fetch)('/file.run', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				fileName: file
-			})
-		});
+	return (0, _reduxEffects.bind)(fetchSave(file, text), function () {
+		return run(file);
 	}, function (err) {
+		return console.warn(err);
+	});
+}
+
+function run(file) {
+	return [(0, _reduxEffects.bind)((0, _reduxEffectsFetch.fetch)('/file.run', {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			fileName: file
+		})
+	}), finishServer, function (err) {
 		return console.warn(err);
 	}), startRunning()];
 }
@@ -86231,13 +86237,11 @@ function reducer() {
 			});
 		case _actions.IS_SAVING:
 			return _extends({}, state, {
-				saving: true,
-				saveMessage: ''
+				saving: true
 			});
 		case _actions.IS_RUNNING:
 			return _extends({}, state, {
-				running: true,
-				saveMessage: ''
+				running: true
 			});
 		case _actions.FINISH_SERVER:
 			return _extends({}, state, {
