@@ -2,6 +2,7 @@ var spawn = require('child_process').spawn
 var parsetrace = require('parsetrace')
 var path = require('path')
 var fs = require('fs')
+var MoveSteering = require('move-steering')
 
 var NUM_NODES = 1
 var COUNTDOWN = 6000
