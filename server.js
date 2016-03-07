@@ -68,7 +68,7 @@ app.post('/file.save', function (req, res) {
 })
 
 app.post('/file.stop', function (req, res) {
-  if(node) {
+  if (node) {
     node.kill()
   }
   try {
@@ -162,10 +162,10 @@ app.post('/source.update', function (req, res) {
   var update = spawn('git', ['pull'])
   update.stderr.setEncoding('utf-8')
   update.stdout.setEncoding('utf-8')
-  update.stderr.on('data', function(data) {
+  update.stderr.on('data', function (data) {
     console.log('error', data)
   })
-  update.stdout.on('data', function(data) {
+  update.stdout.on('data', function (data) {
     console.log('message', data)
   })
   update.on('exit', function (msg) {
@@ -184,7 +184,8 @@ function createNode (filePath, fileName) {
     var trace = parsetrace({stack: data}).object()
     var lineNum = trace.frames.reduce(function (str, next) {
       if (next.file.indexOf('run.js') > -1 && !str) {
-        return str += next.line
+        str += next.line
+        return str
       } else {
         return str
       }
@@ -195,18 +196,17 @@ function createNode (filePath, fileName) {
       'Line: ' + lineNum,
       '\n'
     ].join('\n')
-    if(lineNum) {
+    if (lineNum) {
       fs.appendFileSync('log.txt', err)
     }
+    n.kill()
   })
   return n
 }
 
-
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/public/index.html')
 })
-
 
 var port = process.env.port || 3000
 http.listen(port)
