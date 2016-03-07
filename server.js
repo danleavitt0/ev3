@@ -71,11 +71,7 @@ app.post('/file.stop', function (req, res) {
   if (node) {
     node.kill()
   }
-  try {
-    MoveSteering().reset()
-  } catch (e) {
-    console.warn('no motors attached')
-  }
+  stopMotors()
   setTimeout(function () {
     res.json({
       ok: true,
@@ -88,6 +84,7 @@ app.post('/file.run', function (req, res) {
   var filePath = __dirname + '/files/' + req.body.fileName
   node = createNode(filePath, req.body.fileName)
   node.on('exit', function () {
+    stopMotors()
     setTimeout(function () {
       res.json({ok: true, message: 'Run finished'})
     }, 6000)
@@ -207,6 +204,14 @@ function createNode (filePath, fileName) {
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/public/index.html')
 })
+
+function stopMotors () {
+  try {
+    MoveSteering().reset()
+  } catch (e) {
+    console.warn('no motors attached')
+  }
+}
 
 var port = process.env.port || 3000
 http.listen(port)
