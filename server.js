@@ -8,7 +8,6 @@ var path = require('path')
 var devices = require('ev3-js-devices')
 var app = express()
 var http = require('http').Server(app)
-var parsetrace = require('parsetrace')
 var cluster = require('./cluster')
 var spawn = require('child_process').spawn
 var MoveSteering = require('move-steering')
@@ -37,7 +36,7 @@ app.post('/log.get', function (req, res) {
   fs.readFile('log.txt', 'utf-8', function (err, data) {
     if (err) {
       fs.writeFile('log.txt', '', function () {
-        res.json({ ok: true, data: 'Create log.txt' })
+        res.json({ ok: true, data: 'Created log.txt' })
       })
     } else {
       res.json({ ok: true, data: data })
@@ -47,7 +46,7 @@ app.post('/log.get', function (req, res) {
 
 app.post('/log.clear', function (req, res) {
   fs.writeFile('log.txt', '', function () {
-    res.json({ ok: true, data: 'Create log.txt' })
+    res.json({ ok: true, data: 'Created log.txt' })
   })
 })
 
@@ -68,26 +67,16 @@ app.post('/file.save', function (req, res) {
 })
 
 app.post('/file.stop', function (req, res) {
-  if (node) {
-    node.kill()
-  }
+  node.kill()
   stopMotors()
-  setTimeout(function () {
-    res.json({
-      ok: true,
-      message: 'Run finished'
-    })
-  }, 6000)
+  res.sendStatus(200)
 })
 
 app.post('/file.run', function (req, res) {
-  var filePath = __dirname + '/files/' + req.body.fileName
-  node = createNode(filePath, req.body.fileName)
-  node.on('exit', function () {
-    stopMotors()
-    setTimeout(function () {
-      res.json({ok: true, message: 'Run finished'})
-    }, 6000)
+  console.log('run')
+  var filePath = path.join(__dirname, '/files/', req.body.fileName)
+  node = cluster.run(filePath, function () {
+    res.json({ok: true, message: 'Run finished'})
   })
 })
 
@@ -169,37 +158,6 @@ app.post('/source.update', function (req, res) {
     res.json({ ok: true, message: 'Pull finished' })
   })
 })
-
-function createNode (filePath, fileName) {
-  var n = cluster.run(filePath)
-  n.stdout.setEncoding('utf-8')
-  n.stderr.setEncoding('utf-8')
-  n.stdout.on('data', function (data) {
-    fs.appendFileSync('log.txt', data)
-  })
-  n.stderr.on('data', function (data) {
-    var trace = parsetrace({stack: data}).object()
-    var lineNum = trace.frames.reduce(function (str, next) {
-      if (next.file.indexOf('run.js') > -1 && !str) {
-        str += next.line
-        return str
-      } else {
-        return str
-      }
-    }, '')
-    var err = [
-      'Error: ' + trace.error,
-      'File: ' + fileName,
-      'Line: ' + lineNum,
-      '\n'
-    ].join('\n')
-    if (lineNum) {
-      fs.appendFileSync('log.txt', err)
-    }
-    n.kill()
-  })
-  return n
-}
 
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/public/index.html')

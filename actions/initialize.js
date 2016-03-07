@@ -1,4 +1,4 @@
-import {bindUrl, setUrl} from 'redux-effects-location'
+import {bindUrl} from 'redux-effects-location'
 import {fetch} from 'redux-effects-fetch'
 import {bind} from 'redux-effects'
 

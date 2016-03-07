@@ -1304,10 +1304,6 @@ var _reactAce = require('react-ace');
 
 var _reactAce2 = _interopRequireDefault(_reactAce);
 
-var _brace = require('brace');
-
-var _brace2 = _interopRequireDefault(_brace);
-
 var _split = require('../layouts/split');
 
 var _split2 = _interopRequireDefault(_split);
@@ -1329,6 +1325,10 @@ var _nav = require('../components/nav');
 var _nav2 = _interopRequireDefault(_nav);
 
 require('babel-polyfill');
+
+var _brace = require('brace');
+
+var _brace2 = _interopRequireDefault(_brace);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1360,6 +1360,8 @@ var Editor = function (_Component) {
 
 	function Editor(props) {
 		_classCallCheck(this, Editor);
+
+		console.log(props);
 
 		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Editor).call(this, props));
 
