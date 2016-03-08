@@ -17,7 +17,7 @@ function cluster () {
 	for (var i = 0; i < NUM_NODES; i++) {
 		state.nodes.push(createSpawn())
 	}
-	return {run: run, isRunning: isRunning}
+	return {run: run, isRunning: isRunning, stop: stop}
 
 	function run (file, cb) {
 		cb = cb || function (err) { return err }
@@ -36,6 +36,12 @@ function cluster () {
 
 	function isRunning () {
 		return state.running
+	}
+
+	function stop () {
+		state.nodes.every(function (node) {
+			node.kill()
+		})
 	}
 
 	function setCallback (node, file, cb) {
