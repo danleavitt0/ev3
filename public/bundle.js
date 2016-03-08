@@ -752,8 +752,6 @@ var _noDevice = require('../widgets/noDevice');
 
 var _noDevice2 = _interopRequireDefault(_noDevice);
 
-var _lib = require('material-ui/lib');
-
 var _enroute = require('enroute');
 
 var _enroute2 = _interopRequireDefault(_enroute);
@@ -921,7 +919,7 @@ var Sensor = function (_Component) {
 
 exports.default = Sensor;
 
-},{"../widgets/colorSensor":19,"../widgets/motor":20,"../widgets/noDevice":21,"../widgets/touchSensor":22,"../widgets/ultrasonicSensor":23,"enroute":223,"material-ui/lib":312,"material-ui/lib/svg-icons/action/settings":361,"material-ui/lib/svg-icons/action/touch-app":362,"material-ui/lib/svg-icons/communication/speaker-phone":363,"material-ui/lib/svg-icons/image/color-lens":366,"material-ui/lib/svg-icons/navigation/cancel":370,"react":591}],11:[function(require,module,exports){
+},{"../widgets/colorSensor":19,"../widgets/motor":20,"../widgets/noDevice":21,"../widgets/touchSensor":22,"../widgets/ultrasonicSensor":23,"enroute":223,"material-ui/lib/svg-icons/action/settings":361,"material-ui/lib/svg-icons/action/touch-app":362,"material-ui/lib/svg-icons/communication/speaker-phone":363,"material-ui/lib/svg-icons/image/color-lens":366,"material-ui/lib/svg-icons/navigation/cancel":370,"react":591}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1499,8 +1497,6 @@ var _project = require('../components/project');
 
 var _project2 = _interopRequireDefault(_project);
 
-var _reactRedux = require('react-redux');
-
 var _main = require('../layouts/main');
 
 var _main2 = _interopRequireDefault(_main);
@@ -1651,7 +1647,7 @@ var Home = function (_Component) {
 
 exports.default = Home;
 
-},{"../../actions/actions":1,"../../actions/initialize":2,"../components/nav":8,"../components/project":9,"../layouts/main":12,"material-ui/lib":312,"react":591,"react-redux":445}],17:[function(require,module,exports){
+},{"../../actions/actions":1,"../../actions/initialize":2,"../components/nav":8,"../components/project":9,"../layouts/main":12,"material-ui/lib":312,"react":591}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

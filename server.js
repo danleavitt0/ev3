@@ -8,7 +8,7 @@ var path = require('path')
 var devices = require('ev3-js-devices')
 var app = express()
 var http = require('http').Server(app)
-var cluster = require('./cluster')
+var cluster = require('./cluster')()
 var spawn = require('child_process').spawn
 var MoveSteering = require('move-steering')
 
@@ -73,10 +73,12 @@ app.post('/file.stop', function (req, res) {
 })
 
 app.post('/file.run', function (req, res) {
-  console.log('run')
   var filePath = path.join(__dirname, '/files/', req.body.fileName)
-  node = cluster.run(filePath, function () {
-    res.json({ok: true, message: 'Run finished'})
+  node = cluster.run(filePath, function (err) {
+    if (err) {
+      return res.json({ok: false, message: err})
+    }
+    return res.json({ok: true, message: 'Run finished'})
   })
 })
 
