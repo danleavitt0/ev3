@@ -85,6 +85,6 @@ function getErrorMessage (data, fileName) {
 		'\n'
 	].join('\n')
 	if (lineNum) {
-		fs.appendFileSync(path.resolve('../../log.txt'), err)
+		fs.appendFileSync(path.resolve('log.txt'), err)
 	}
 }

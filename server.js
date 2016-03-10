@@ -7,7 +7,6 @@ var cors = require('cors')
 var path = require('path')
 var devices = require('ev3-js-devices')
 var app = express()
-var http = require('http').Server(app)
 var cluster = require('./cluster')()
 var spawn = require('child_process').spawn
 var MoveSteering = require('move-steering')
@@ -177,4 +176,4 @@ function stopMotors () {
 
 var port = process.env.port || 3000
 var server = app.listen(port)
-server.timeout = 600000
+server.timeout = 1800000
