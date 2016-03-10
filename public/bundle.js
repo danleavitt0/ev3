@@ -1359,8 +1359,6 @@ var Editor = function (_Component) {
 	function Editor(props) {
 		_classCallCheck(this, Editor);
 
-		console.log(props);
-
 		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Editor).call(this, props));
 
 		_this.state = {
