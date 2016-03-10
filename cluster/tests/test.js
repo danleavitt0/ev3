@@ -2,8 +2,9 @@ var test = require('tape')
 var cluster = require('../index')
 var path = require('path')
 
-var noError = path.resolve('./noError.js')
-var withError = path.resolve('./withError.js')
+
+var noError = path.join(__dirname, 'noError.js')
+var withError = path.join(__dirname, 'withError.js')
 
 test('normal run', function (t) {
   t.plan(2)
@@ -38,4 +39,5 @@ test('forever run', function (t) {
 
   t.equal(c.isRunning(), true)
   node.kill()
+  c.stop()
 })

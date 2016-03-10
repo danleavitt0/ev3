@@ -63,7 +63,7 @@ function createSpawn () {
   n.stdout.setEncoding('utf-8')
   n.stderr.setEncoding('utf-8')
   n.stdout.on('data', function (data) {
-    fs.appendFileSync(path.resolve('log.txt'), data)
+    fs.appendFileSync('log.txt', data)
   })
   return n
 }
@@ -85,6 +85,6 @@ function getErrorMessage (data, fileName) {
 		'\n'
 	].join('\n')
 	if (lineNum) {
-		fs.appendFileSync(path.resolve('log.txt'), err)
+		fs.appendFileSync('log.txt', err)
 	}
 }
