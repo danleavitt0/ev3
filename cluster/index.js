@@ -45,10 +45,6 @@ function cluster () {
 	}
 
 	function setCallback (node, file, cb) {
-		node.stderr.on('data', function (data) {
-			getErrorMessage(data, file)
-			node.kill()
-		})
 		node.on('exit', function () {
 			setTimeout(function () {
 				state.running = false
@@ -62,8 +58,13 @@ function createSpawn () {
 	var n = spawn('node', [path.join(__dirname, 'run.js')])
   n.stdout.setEncoding('utf-8')
   n.stderr.setEncoding('utf-8')
+	n.stderr.on('data', function (data) {
+		getErrorMessage(data)
+		node.kill()
+	})
+
   n.stdout.on('data', function (data) {
-    fs.appendFileSync('../log.txt', data)
+    fs.appendFileSync(path.resolve('log.txt'), data)
   })
   return n
 }
@@ -85,6 +86,6 @@ function getErrorMessage (data, fileName) {
 		'\n'
 	].join('\n')
 	if (lineNum) {
-		fs.appendFileSync('../log.txt', err)
+		fs.appendFileSync(path.resolve('log.txt'), err)
 	}
 }

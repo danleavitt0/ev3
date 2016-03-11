@@ -66,7 +66,7 @@ app.post('/file.save', function (req, res) {
 })
 
 app.post('/file.stop', function (req, res) {
-  if(node) {
+  if (node) {
     node.kill()
   }
   stopMotors()
